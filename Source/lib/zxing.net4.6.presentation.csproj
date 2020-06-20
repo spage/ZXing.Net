@@ -83,12 +83,6 @@
       <Link>Properties\private.snk</Link>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="zxing.net4.6.csproj">
-      <Project>{E028CBEC-BD08-4A0F-B4BB-C7EC413A16C1}</Project>
-      <Name>zxing.net4.6</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup Condition="!Exists('$(MSBuildProjectDirectory)\..\..\Key\private.snk')">
     <PreBuildEvent Condition=" '$(OS)' == 'Unix' ">cp "$(MSBuildProjectDirectory)\..\..\Key\dummy-private.snk" "$(MSBuildProjectDirectory)\..\..\Key\private.snk"</PreBuildEvent>

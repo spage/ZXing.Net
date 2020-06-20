@@ -23,15 +23,11 @@ namespace ZXing.Common
     /// <summary>
     /// Defines an container for encoder options
     /// </summary>
-    [Serializable]
     public class EncodingOptions
     {
         /// <summary>
         /// Gets the data container for all options
         /// </summary>
-#if !UNITY
-        [Browsable(false)]
-#endif
         public IDictionary<EncodeHintType, object> Hints { get; private set; }
 
         /// <summary>

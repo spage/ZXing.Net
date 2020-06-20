@@ -1,15 +1,14 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <VersionPrefix>0.16.5</VersionPrefix>
     <TargetFrameworks>netstandard1.0;netstandard1.1;netstandard1.3;netstandard2.0</TargetFrameworks>
     <DefineConstants>$(DefineConstants);NETSTANDARD</DefineConstants>
     <PlatformTarget>anycpu</PlatformTarget>
-    <PublicSign>true</PublicSign>
+    <PublicSign>false</PublicSign>
     <DebugType>portable</DebugType>
-    <AssemblyName>zxing</AssemblyName>
-    <AssemblyOriginatorKeyFile>../../../Key/private.snk</AssemblyOriginatorKeyFile>
-    <SignAssembly>true</SignAssembly>
+    <AssemblyName>zxing</AssemblyName>    
+    <SignAssembly>false</SignAssembly>
     <PackageId>ZXing.Net</PackageId>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
@@ -20,6 +19,11 @@
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
     <EnableDefaultCompileItems>False</EnableDefaultCompileItems>
+    <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
+    <RunAnalyzersDuringLiveAnalysis>false</RunAnalyzersDuringLiveAnalysis>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <ApplicationIcon />
+    <Win32Resource />
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
@@ -53,21 +57,124 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\Properties\AssemblyInfo.cs;..\renderer\IBarcodeRenderer.cs;..\renderer\PixelData.cs;..\renderer\PixelDataRenderer.cs;..\renderer\SVGRenderer.cs;..\BarcodeFormat.cs;..\BarcodeReader.ByteArray.cs;..\BarcodeReaderCustom.cs;..\BarcodeReaderGeneric.cs;..\BarcodeWriter.PixelData.cs;..\BarcodeWriter.SvgImage.cs;..\BarcodeWriterCustom.cs;..\BarcodeWriterGeneric.cs;..\BaseLuminanceSource.cs;..\Binarizer.cs;..\BinaryBitmap.cs;..\DecodeHintType.cs;..\Dimension.cs;..\EncodeHintType.cs;..\FormatException.cs;..\IBarcodeReader.cs;..\IBarcodeReader.Multiple.cs;..\IBarcodeReaderCustom.cs;..\IBarcodeReaderCustom.Multiple.cs;..\IBarcodeReaderGeneric.cs;..\IBarcodeReaderGeneric.Multiple.cs;..\IBarcodeWriter.cs;..\IBarcodeWriter.PixelData.cs;..\IBarcodeWriter.SvgImage.cs;..\IBarcodeWriterCustom.cs;..\IBarcodeWriterGeneric.cs;..\InvertedLuminanceSource.cs;..\LuminanceSource.cs;..\MultiFormatReader.cs;..\MultiFormatWriter.cs;..\PlanarYUVLuminanceSource.cs;..\Reader.cs;..\ReaderException.cs;..\Result.cs;..\ResultMetadataType.cs;..\ResultPoint.cs;..\ResultPointCallback.cs;..\RGBLuminanceSource.cs;..\SupportClass.cs;..\Writer.cs;..\WriterException.cs" Exclude="..\common\BitMatrix.Drawing.cs;..\common\BitMatrix.Silverlight.cs" />
-    <Compile Include="..\aztec\**;..\client\**;..\common\**;..\datamatrix\**;..\imb\**;..\maxicode\**;..\multi\**;..\oned\**;..\pdf417\**;..\qrcode\**" Exclude="..\client\result\optional\**\*;..\common\BigInteger\**\*;bin\**;obj\**;**\*.xproj;packages\**;" />
+    <Compile Include="..\common\**;..\qrcode\**" Exclude="..\common\BigInteger\**\*;bin\**;obj\**;**\*.xproj;packages\**;" />
+    <Compile Remove="..\client\result\**" />
     <Compile Remove="..\common\BitMatrix.Drawing.cs;..\common\BitMatrix.Silverlight.cs;..\common\advanced\rowedge\**" />
+    <Compile Remove="..\common\reedsolomon\**" />
+    <Compile Remove="..\multi\qrcode\**" />
+    <Compile Remove="..\oned\rss\**" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.0' ">
-	<Compile Include="..\net2.0\Action.cs;..\net2.0\Func.cs;..\common\BigInteger\**\*;..\silverlight\BrowsableAttribute.cs;..\silverlight\NonSerializedAttribute.cs;..\silverlight\SerializableAttribute.cs" />
+
+  <ItemGroup>
+    <Compile Remove="..\aztec\AztecDetectorResult.cs" />
+    <Compile Remove="..\aztec\AztecReader.cs" />
+    <Compile Remove="..\aztec\AztecResultMetadata.cs" />
+    <Compile Remove="..\aztec\AztecWriter.cs" />
+    <Compile Remove="..\aztec\decoder\Decoder.cs" />
+    <Compile Remove="..\aztec\detector\Detector.cs" />
+    <Compile Remove="..\aztec\encoder\AztecCode.cs" />
+    <Compile Remove="..\aztec\encoder\AztecEncodingOptions.cs" />
+    <Compile Remove="..\common\DecoderResult.cs" />
+    <Compile Remove="..\common\DecodingOptions.cs" />
+    <Compile Remove="..\common\DefaultGridSampler.cs" />
+    <Compile Remove="..\common\DetectorResult.cs" />
+    <Compile Remove="..\common\detector\MathUtils.cs" />
+    <Compile Remove="..\common\detector\MonochromeRectangleDetector.cs" />
+    <Compile Remove="..\common\detector\WhiteRectangleDetector.cs" />
+    <Compile Remove="..\common\ECI.cs" />
+    <Compile Remove="..\common\GlobalHistogramBinarizer.cs" />
+    <Compile Remove="..\common\GridSampler.cs" />
+    <Compile Remove="..\common\HybridBinarizer.cs" />
+    <Compile Remove="..\common\PerspectiveTransform.cs" />
+    <Compile Remove="..\common\StringUtils.cs" />
+    <Compile Remove="..\datamatrix\DataMatrixReader.cs" />
+    <Compile Remove="..\datamatrix\DataMatrixWriter.cs" />
+    <Compile Remove="..\datamatrix\decoder\BitMatrixParser.cs" />
+    <Compile Remove="..\datamatrix\decoder\DataBlock.cs" />
+    <Compile Remove="..\datamatrix\decoder\DecodedBitStreamParser.cs" />
+    <Compile Remove="..\datamatrix\decoder\Decoder.cs" />
+    <Compile Remove="..\datamatrix\decoder\Version.cs" />
+    <Compile Remove="..\datamatrix\detector\Detector.cs" />
+    <Compile Remove="..\datamatrix\encoder\C40Encoder.cs" />
+    <Compile Remove="..\datamatrix\encoder\DatamatrixEncodingOptions.cs" />
+    <Compile Remove="..\datamatrix\encoder\DataMatrixSymbolInfo144.cs" />
+    <Compile Remove="..\datamatrix\encoder\EncoderContext.cs" />
+    <Compile Remove="..\datamatrix\encoder\X12Encoder.cs" />
+    <Compile Remove="..\imb\IMBReader.cs" />
+    <Compile Remove="..\multi\MultipleBarcodeReader.cs" />
+    <Compile Remove="..\oned\CodaBarReader.cs" />
+    <Compile Remove="..\oned\CodaBarWriter.cs" />
+    <Compile Remove="..\oned\Code128EncodingOptions.cs" />
+    <Compile Remove="..\oned\Code128Reader.cs" />
+    <Compile Remove="..\oned\Code128Writer.cs" />
+    <Compile Remove="..\oned\Code39Reader.cs" />
+    <Compile Remove="..\oned\Code39Writer.cs" />
+    <Compile Remove="..\oned\Code93Reader.cs" />
+    <Compile Remove="..\oned\Code93Writer.cs" />
+    <Compile Remove="..\oned\EAN13Reader.cs" />
+    <Compile Remove="..\oned\EAN13Writer.cs" />
+    <Compile Remove="..\oned\EAN8Reader.cs" />
+    <Compile Remove="..\oned\EAN8Writer.cs" />
+    <Compile Remove="..\oned\EANManufacturerOrgSupport.cs" />
+    <Compile Remove="..\oned\OneDimensionalCodeWriter.cs" />
+    <Compile Remove="..\oned\OneDReader.cs" />
+    <Compile Remove="..\oned\UPCAReader.cs" />
+    <Compile Remove="..\oned\UPCAWriter.cs" />
+    <Compile Remove="..\oned\UPCEANExtension2Support.cs" />
+    <Compile Remove="..\oned\UPCEANExtension5Support.cs" />
+    <Compile Remove="..\oned\UPCEANExtensionSupport.cs" />
+    <Compile Remove="..\oned\UPCEANReader.cs" />
+    <Compile Remove="..\oned\UPCEANWriter.cs" />
+    <Compile Remove="..\oned\UPCEReader.cs" />
+    <Compile Remove="..\oned\UPCEWriter.cs" />
+    <Compile Remove="..\pdf417\encoder\PDF417.cs" />
+    <Compile Remove="..\pdf417\encoder\PDF417AspectRatio.cs" />
+    <Compile Remove="..\pdf417\encoder\PDF417EncodingOptions.cs" />
+    <Compile Remove="..\pdf417\encoder\PDF417ErrorCorrection.cs" />
+    <Compile Remove="..\pdf417\encoder\PDF417HighLevelEncoder.cs" />
+    <Compile Remove="..\pdf417\encoder\PDF417OptionalMacroFields.cs" />
+    <Compile Remove="..\pdf417\PDF417Common.cs" />
+    <Compile Remove="..\pdf417\PDF417MacroMetadata.cs" />
+    <Compile Remove="..\pdf417\PDF417Reader.cs" />
+    <Compile Remove="..\pdf417\PDF417ResultMetadata.cs" />
+    <Compile Remove="..\pdf417\PDF417Writer.cs" />
+    <Compile Remove="..\qrcode\decoder\BitMatrixParser.cs" />
+    <Compile Remove="..\qrcode\decoder\DataBlock.cs" />
+    <Compile Remove="..\qrcode\decoder\DataMask.cs" />
+    <Compile Remove="..\qrcode\decoder\DecodedBitStreamParser.cs" />
+    <Compile Remove="..\qrcode\decoder\Decoder.cs" />
+    <Compile Remove="..\qrcode\decoder\ErrorCorrectionLevel.cs" />
+    <Compile Remove="..\qrcode\decoder\FormatInformation.cs" />
+    <Compile Remove="..\qrcode\decoder\Mode.cs" />
+    <Compile Remove="..\qrcode\decoder\QRCodeDecoderMetaData.cs" />
+    <Compile Remove="..\qrcode\decoder\Version.cs" />
+    <Compile Remove="..\qrcode\detector\AlignmentPattern.cs" />
+    <Compile Remove="..\qrcode\detector\AlignmentPatternFinder.cs" />
+    <Compile Remove="..\qrcode\detector\Detector.cs" />
+    <Compile Remove="..\qrcode\detector\FinderPattern.cs" />
+    <Compile Remove="..\qrcode\detector\FinderPatternFinder.cs" />
+    <Compile Remove="..\qrcode\detector\FinderPatternInfo.cs" />
+    <Compile Remove="..\qrcode\QRCodeReader.cs" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.1' ">
-	<Compile Include="..\silverlight\BrowsableAttribute.cs;..\silverlight\NonSerializedAttribute.cs;..\silverlight\SerializableAttribute.cs" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
-	<Compile Include="..\silverlight\BrowsableAttribute.cs;..\silverlight\NonSerializedAttribute.cs;..\silverlight\SerializableAttribute.cs" />
+  <ItemGroup>
+    <Compile Include="BarcodeFormat.cs" />
+    <Compile Include="BitMatrixParser.cs" />
+    <Compile Include="DataBlock.cs" />
+    <Compile Include="DataMask.cs" />
+    <Compile Include="ECI.cs" />
+    <Compile Include="EncodeHintType.cs" />
+    <Compile Include="ErrorCorrectionLevel.cs" />
+    <Compile Include="FormatInformation.cs" />
+    <Compile Include="GenericGF.cs" />
+    <Compile Include="GenericGFPoly.cs" />
+    <Compile Include="Mode.cs" />
+    <Compile Include="ReedSolomonDecoder.cs" />
+    <Compile Include="ReedSolomonEncoder.cs" />
+    <Compile Include="Version.cs" />
+    <Compile Include="Writer.cs" />
+    <Compile Include="WriterException.cs" />
   </ItemGroup>
 
 </Project>
